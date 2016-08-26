@@ -3,12 +3,13 @@ package ClaRa_Obsolete "ClaRa obsolete models package"
   import SI = ClaRa_Obsolete.Basics.Units;
 
 
-annotation (preferedView="info",version="1.1.0",
+annotation (preferedView="info",version="1.1.1",
                            uses(
-    TILMedia(version="1.0.1 ClaRa"),
-    FluidDissipation(version="1.1.7"),
+    TILMedia(version="1.1.1 ClaRa"),
       Modelica(version="3.2.1"),
-    ClaRa(version="1.1.0")),     Icon(coordinateSystem(preserveAspectRatio=
+    ClaRa(version="1.1.1"),
+    FluidDissipation(version="1.1.8")),
+                                 Icon(coordinateSystem(preserveAspectRatio=
           false, extent={{-100,-100},{100,100}}),
                                       graphics={Bitmap(
         extent={{-100,-100},{100,100}},
