@@ -1,4 +1,4 @@
-within ClaRa_Obsolete.Basics.ControlVolumes.Fundamentals.HeatTransport.VLE_HT;
+﻿within ClaRa_Obsolete.Basics.ControlVolumes.Fundamentals.HeatTransport.VLE_HT;
 model CharLine_AR_L4 "Obsolete HT Model || Heat transfer coefficient defined by a characteristic line and a nominal value"
   //___________________________________________________________________________//
   // Component of the ClaRa library, version: 1.0.0                        //
@@ -44,7 +44,7 @@ protected
     input Real table[:, :];
     input Modelica.Blocks.Types.Smoothness smoothness;
     output Integer tableID;
-  external"C" tableID=  ModelicaTables_CombiTable1D_init(
+  external"C" tableID = ModelicaTables_CombiTable1D_init(
         tableName,
         fileName,
         table,
@@ -59,7 +59,7 @@ protected
     input Integer icol;
     input Real u;
     output Real value;
-  external"C" value=  ModelicaTables_CombiTable1D_interpolate(
+  external"C" value = ModelicaTables_CombiTable1D_interpolate(
         tableID,
         icol,
         u);

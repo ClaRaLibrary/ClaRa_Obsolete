@@ -1,4 +1,4 @@
-within ClaRa_Obsolete.Components.VolumesValvesFittings.Fittings;
+﻿within ClaRa_Obsolete.Components.VolumesValvesFittings.Fittings;
 model SprayInjector_L3 "A spray injector for i.e. temperature control"
 //___________________________________________________________________________//
 // Component of the ClaRa library, version: 1.0.0                        //
@@ -49,7 +49,8 @@ model SprayInjector_L3 "A spray injector for i.e. temperature control"
   parameter Modelica.SIunits.Pressure p_start=1e5 "Start value of sytsem pressure"
                                      annotation(Dialog(group="Initialisation"));
 
-  parameter ClaRa.Basics.Choices.Init initType=ClaRa.Basics.Choices.Init.noInit "Type of initialisation" annotation (Dialog(group="Initialisation"));
+  parameter Integer initOption=0 "Type of initialisation at tube side"
+    annotation (Dialog( group="Initialisation"), choices(choice = 0 "Use guess values", choice = 1 "Steady state", choice=201 "Steady pressure", choice = 202 "Steady enthalpy"));
 
   parameter Boolean useHomotopy=simCenter.useHomotopy "True, if homotopy method is used during initialisation"
                                                              annotation(Dialog(group="Initialisation"));
@@ -65,43 +66,37 @@ protected
                                        annotation(Dialog(group="Initialisation"));
   extends Basics.Icons.Obsolete_v1_1;
 public
-  ClaRa.Components.VolumesValvesFittings.Fittings.Join_L2_flex mixingZone(
+  ClaRa.Components.VolumesValvesFittings.Fittings.JoinVLE_L2_flex mixingZone(
     N_ports_in=2,
     medium=medium,
     useHomotopy=useHomotopy,
     p_nom=p_nom,
     p_start=p_start,
-    initType=initType,
     showData=false,
     m_flow_in_nom={m_flow_nom_main,m_flow_nom_spray},
     h_nom=h_nom_mix,
     h_start=h_start_mix,
     volume=Modelica.Constants.pi/4*diameter_i^2*length/2*N,
     showExpertSummary=showExpertSummary,
-    preciseTwoPhase=preciseTwoPhase) annotation (Placement(transformation(extent={{-18,10},{2,30}})));
+    preciseTwoPhase=preciseTwoPhase,
+    initOption=initOption) annotation (Placement(transformation(extent={{-18,10},{2,30}})));
   ClaRa.Basics.ControlVolumes.FluidVolumes.VolumeVLE_2 outflowZone(
-    redeclare model Geometry =
-        ClaRa.Basics.ControlVolumes.Fundamentals.Geometry.PipeGeometry (
+    redeclare model Geometry = ClaRa.Basics.ControlVolumes.Fundamentals.Geometry.PipeGeometry (
         diameter=diameter_i,
         length=length/2,
         Nt=N),
     medium=medium,
     useHomotopy=useHomotopy,
-    initType=initType,
     m_flow_nom=m_flow_nom_main + m_flow_nom_spray,
     h_nom=h_nom_mix,
     h_start=h_start_mix,
     p_nom=p_nom - Delta_p_nom,
-    redeclare model HeatTransfer =
-        ClaRa.Basics.ControlVolumes.Fundamentals.HeatTransport.Generic_HT.IdealHeatTransfer_L2,
-    redeclare model PhaseBorder =
-        ClaRa.Basics.ControlVolumes.Fundamentals.SpacialDistribution.IdeallyStirred,
-    redeclare model PressureLoss =
-        ClaRa.Basics.ControlVolumes.Fundamentals.PressureLoss.Generic_PL.LinearPressureLoss_L2 (
-          Delta_p_nom=Delta_p_nom),
+    redeclare model HeatTransfer = ClaRa.Basics.ControlVolumes.Fundamentals.HeatTransport.Generic_HT.IdealHeatTransfer_L2,
+    redeclare model PhaseBorder = ClaRa.Basics.ControlVolumes.Fundamentals.SpacialDistribution.IdeallyStirred,
+    redeclare model PressureLoss = ClaRa.Basics.ControlVolumes.Fundamentals.PressureLoss.Generic_PL.LinearPressureLoss_L2 (Delta_p_nom=Delta_p_nom),
     p_start=p_start,
-    showExpertSummary=false)
-    annotation (Placement(transformation(extent={{34,10},{54,30}})));
+    showExpertSummary=false,
+    initOption=initOption) annotation (Placement(transformation(extent={{34,10},{54,30}})));
 
   ClaRa.Basics.Interfaces.FluidPortIn MainInlet(Medium=medium) "Inlet port"
     annotation (Placement(transformation(extent={{-110,10},{-90,30}}),

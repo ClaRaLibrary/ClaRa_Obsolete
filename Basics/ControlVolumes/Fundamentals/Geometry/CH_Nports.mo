@@ -1,4 +1,4 @@
-within ClaRa_Obsolete.Basics.ControlVolumes.Fundamentals.Geometry;
+﻿within ClaRa_Obsolete.Basics.ControlVolumes.Fundamentals.Geometry;
 model CH_Nports "Cylindric shape || Shell with tubes || Vertical flow || Perpendicular tubes"
   //___________________________________________________________________________//
   // Component of the ClaRa library, version: 1.0.0                        //

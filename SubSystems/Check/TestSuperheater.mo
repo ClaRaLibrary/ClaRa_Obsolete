@@ -1,4 +1,4 @@
-within ClaRa_Obsolete.SubSystems.Check;
+﻿within ClaRa_Obsolete.SubSystems.Check;
 model TestSuperheater
 //___________________________________________________________________________//
 // Component of the ClaRa library, version: 1.0.0                        //
@@ -20,9 +20,9 @@ parameter Integer n_Axial=10;
   ClaRa_Obsolete.SubSystems.ConvectiveHeatingPart_3SH SH(
     N_ax=n_Axial,
     m_flow_nom=783,
-    SH3_wall(initChoice=ClaRa.Basics.Choices.Init.steadyState, Delta_x=ones(SH.superheater3.N_cv)*SH.length_SH3/SH.superheater3.N_cv),
-    SH2_wall(initChoice=ClaRa.Basics.Choices.Init.steadyState, Delta_x=ones(SH.superheater2.N_cv)*SH.length_SH2/SH.superheater2.N_cv),
-    SH1_wall(initChoice=ClaRa.Basics.Choices.Init.steadyState, Delta_x=ones(SH.superheater1.N_cv)*SH.length_SH1/SH.superheater1.N_cv),
+    SH3_wall(Delta_x=ones(SH.superheater3.N_cv)*SH.length_SH3/SH.superheater3.N_cv, initOption=1),
+    SH2_wall(Delta_x=ones(SH.superheater2.N_cv)*SH.length_SH2/SH.superheater2.N_cv, initOption=1),
+    SH1_wall(Delta_x=ones(SH.superheater1.N_cv)*SH.length_SH1/SH.superheater1.N_cv, initOption=1),
     h_nomSH1_in=2803e3,
     h_nomSH1_out=3106e3,
     h_nomSH2_in=3061e3,
@@ -36,8 +36,6 @@ parameter Integer n_Axial=10;
     h_start_Spray1=1363e3,
     h_nom_Spray2=1363e3,
     h_start_Spray2=1363e3,
-    initType_Spray1=ClaRa.Basics.Choices.Init.steadyState,
-    initType_Spray2=ClaRa.Basics.Choices.Init.steadyState,
     superheater3(Delta_x=ones(SH.superheater3.N_cv)*SH.length_SH3/SH.superheater3.N_cv),
     superheater2(Delta_x=ones(SH.superheater2.N_cv)*SH.length_SH2/SH.superheater2.N_cv),
     superheater1(Delta_x=ones(SH.superheater1.N_cv)*SH.length_SH1/SH.superheater1.N_cv),
@@ -46,12 +44,9 @@ parameter Integer n_Axial=10;
     h_startSH1_in=2869e3,
     h_startSH2_in=3085.7e3,
     h_startSH3_in=3268e3,
-    initTypeSH3=ClaRa.Basics.Choices.Init.noInit,
     m_flow_nomSpray1=30,
     m_flow_nomSpray2=30,
-    initTypeSH2=ClaRa.Basics.Choices.Init.noInit,
     redeclare model HeatTransfer_SH1 = ClaRa.Basics.ControlVolumes.Fundamentals.HeatTransport.Generic_HT.NominalPoint_L4 (alpha_nom=1000),
-    initTypeSH1=ClaRa.Basics.Choices.Init.noInit,
     redeclare model Material = TILMedia.SolidTypes.TILMedia_Steel,
     redeclare model PressureLoss_SH1 = ClaRa.Basics.ControlVolumes.Fundamentals.PressureLoss.Generic_PL.LinearPressureLoss_L4,
     p_nomSH1_in=30260000,
@@ -71,7 +66,10 @@ parameter Integer n_Axial=10;
     Delta_p_nom_SI1=210000,
     Delta_p_nomSpray1=2460000,
     Delta_p_nom_SI2=140000,
-    Delta_p_nomSpray2=2950000) annotation (Placement(transformation(extent={{-24,-14},{-2,36}})));
+    Delta_p_nomSpray2=2950000,
+    initOptionSH1=0,
+    initOptionSH2=0,
+    initOptionSH3=0) annotation (Placement(transformation(extent={{-24,-14},{-2,36}})));
 
   ClaRa.Components.BoundaryConditions.BoundaryVLE_hxim_flow massFlowSource_XRG(m_flow_const=783, h_const=2843e3) annotation (Placement(transformation(extent={{-60,-48},{-40,-28}})));
   ClaRa.Components.BoundaryConditions.BoundaryVLE_phxi pressureSink_XRG(h_const=3500e3, p_const=28400000) annotation (Placement(transformation(extent={{64,50},{40,72}})));

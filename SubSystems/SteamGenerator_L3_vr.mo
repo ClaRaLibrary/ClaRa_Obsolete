@@ -1,4 +1,4 @@
-within ClaRa_Obsolete.SubSystems;
+﻿within ClaRa_Obsolete.SubSystems;
 model SteamGenerator_L3_vr "A steam generation and reaheater model using lumped balance equations for mass and energy and two spray attemperators"
 //___________________________________________________________________________//
 // Component of the ClaRa library, version: 1.0.0                        //

@@ -1,4 +1,4 @@
-within ClaRa_Obsolete.Components.VolumesValvesFittings.Fittings;
+﻿within ClaRa_Obsolete.Components.VolumesValvesFittings.Fittings;
 model SprayInjector_L3_advanced "A spray injector for i.e. temperature control"
 //___________________________________________________________________________//
 // Component of the ClaRa library, version: 1.0.0                        //
@@ -57,8 +57,8 @@ model SprayInjector_L3_advanced "A spray injector for i.e. temperature control"
   parameter Modelica.SIunits.Pressure p_start=1e5 "|Initialisation|Fluid|Start value of sytsem pressure";
 
   parameter Real y_start=0.05 "|Initialisation|Fluid|Start value for ratio spray volume to total volume";
-  parameter ClaRa.Basics.Choices.Init initFluid=ClaRa.Basics.Choices.Init.noInit "|Initialisation|Fluid|Initialisation option of fluid"
-                                              annotation(Dialog(group="Initialisation"));
+  inner parameter Integer initOptionFluid = 211 "Type of initialisation of fluid"
+    annotation (Dialog(tab= "Initialisation", group="Fluid"), choices(choice = 0 "Use guess values", choice = 209 "Steady in vapour pressure, enthalpies and vapour volume", choice=201 "Steady vapour pressure", choice = 202 "Steady enthalpy", choice=204 "Fixed volume fraction",  choice=211 "Fixed values in level, enthalpies and vapour pressure"));
 
    parameter Modelica.SIunits.Temperature T_wall_start[N_wall]=ones(N_wall)*TILMedia.VLEFluidFunctions.temperature_phxi(medium, p_start, h_start_main) "|Initialisation|Wall|Start values of wall temperature";
   parameter ClaRa.Basics.Choices.Init initWall=ClaRa.Basics.Choices.Init.noInit "|Initialisation|Wall|Initialisation option of wall";
@@ -86,7 +86,6 @@ public
   ClaRa.Basics.ControlVolumes.FluidVolumes.VolumeVLE_L3_TwoZonesNPort mixingZone(
     medium=medium,
     useHomotopy=useHomotopy,
-    initType=initFluid,
     p_start=p_start,
     p_nom=p_nom,
     redeclare model Geometry = ClaRa.Basics.ControlVolumes.Fundamentals.Geometry.GenericGeometry (
@@ -110,7 +109,8 @@ public
     redeclare model PhaseBorder = ClaRa.Basics.ControlVolumes.Fundamentals.SpacialDistribution.RealMixed (level_rel_start=y_start, eps_mix=eps_mix),
     redeclare model HeatTransfer = ClaRa.Basics.ControlVolumes.Fundamentals.HeatTransport.Generic_HT.Constant_L3,
     showExpertSummary=showExpertSummary,
-    redeclare model PressureLoss = PressureLoss_mixingZone) annotation (Placement(transformation(extent={{34,10},{54,30}})));
+    redeclare model PressureLoss = PressureLoss_mixingZone,
+    initOption=initOptionFluid) annotation (Placement(transformation(extent={{34,10},{54,30}})));
 
   ClaRa.Basics.Interfaces.FluidPortIn MainInlet(Medium=medium) "Inlet port"
     annotation (Placement(transformation(extent={{-110,10},{-90,30}}),

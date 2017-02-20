@@ -1,4 +1,4 @@
-within ClaRa_Obsolete.Basics.ControlVolumes.Fundamentals.SpatialDistribution;
+﻿within ClaRa_Obsolete.Basics.ControlVolumes.Fundamentals.SpatialDistribution;
 model RealSeparated "Separation | Real | outlet states depending on filling Level | All geometries"
   //___________________________________________________________________________//
   // Component of the ClaRa library, version: 1.0.0                        //
@@ -20,8 +20,8 @@ model RealSeparated "Separation | Real | outlet states depending on filling Leve
   import ClaRa.Basics.Functions.Stepsmoother;
 
   /////// The following block is be conform to MSL 3.2 and will be removed in the future////////////////
-  import ClaRa.Basics.Functions.TableInterpolation.tableInit;
-  import ClaRa.Basics.Functions.TableInterpolation.tableIpo;
+  import ClaRa_Obsolete.Basics.Functions.TableInterpolation.tableInit;
+  import ClaRa_Obsolete.Basics.Functions.TableInterpolation.tableIpo;
   //////////////////////////////////////////////////////////////////////////////////////////////////////
 
   /////// The following block will be conform to MSL 3.2.1 and will be activated in the future//////////

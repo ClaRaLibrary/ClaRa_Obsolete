@@ -1,4 +1,4 @@
-within ClaRa_Obsolete.SubSystems.Check;
+﻿within ClaRa_Obsolete.SubSystems.Check;
 model testCoalSupplyBoiler7_XRG_vr
 //___________________________________________________________________________//
 // Component of the ClaRa library, version: 1.0.0                        //
@@ -86,8 +86,8 @@ public
     rho_nom=1.7,
     m_flow_nom=419 - 150,
     p_nom=400000,
-    CL_eta_mflow=[0.0,0.9; 1,0.9]) annotation (Placement(transformation(extent={{138,-76},{154,-56}})));
-  ClaRa.Components.VolumesValvesFittings.Fittings.Split_L2_Y split_IET3_1(redeclare model PressureLossIn = Components.VolumesValvesFittings.Fittings.Fundamentals.Linear, initType=ClaRa.Basics.Choices.Init.steadyState) annotation (Placement(transformation(extent={{114,-102},{134,-90}})));
+    redeclare model Efficiency = ClaRa.Components.TurboMachines.Fundamentals.EfficiencyModels.TableMassFlow (eta_mflow=([0.0,0.9; 1,0.9]))) annotation (Placement(transformation(extent={{138,-76},{154,-56}})));
+  ClaRa.Components.VolumesValvesFittings.Fittings.SplitVLE_L2_Y split_IET3_1(initOption=208, redeclare model PressureLossIn = ClaRa.Components.VolumesValvesFittings.Fittings.Fundamentals.Linear) annotation (Placement(transformation(extent={{114,-102},{134,-90}})));
   ClaRa.Components.BoundaryConditions.BoundaryVLE_hxim_flow massFlowSource_XRG1(variable_m_flow=false, m_flow_const=-150) annotation (Placement(transformation(extent={{124,-138},{144,-118}})));
   Modelica.Blocks.Sources.Ramp ramp3(
     offset=1,
@@ -98,7 +98,7 @@ public
 equation
 
   connect(ramp1.y, Model_boiler.yT_)         annotation (Line(
-      points={{-79,170},{46,170},{46,148.3},{43.968,148.3}},
+      points={{-79,170},{46,170},{46,148.3},{42.5077,148.3}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(SV_Pressure_LS.y, PID.u_s) annotation (Line(
@@ -106,7 +106,7 @@ equation
       color={0,0,127},
       smooth=Smooth.None));
   connect(MV_Pressure_LS.y, PID.u_m)  annotation (Line(
-      points={{-111,74},{-88,74},{-88,78},{-88,78}},
+      points={{-111,74},{-88,74},{-88,78},{-87.9,78}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(ramp2.y, add.u1) annotation (Line(
@@ -120,7 +120,7 @@ equation
 
   connect(turbinesAndReheat_01_XRG.inlet, Model_boiler.steamSignal) annotation (
      Line(
-      points={{82.3,120.6},{54,120.6},{54,120.76},{48,120.76}},
+      points={{82.3,120.6},{54,120.6},{54,122.8},{48.3231,122.8}},
       color={255,204,51},
       thickness=0.5,
       smooth=Smooth.None));
@@ -150,7 +150,7 @@ equation
       color={0,0,127},
       smooth=Smooth.Bezier));
   connect(Model_boiler.steamSignal, mediumData_b) annotation (Line(
-      points={{48,120.76},{48,186},{-140,186},{-140,-58},{-131,-58}},
+      points={{48.3231,122.8},{48.3231,186},{-140,186},{-140,-58},{-131,-58}},
       color={255,204,51},
       thickness=0.5,
       smooth=Smooth.None));
@@ -175,7 +175,7 @@ equation
       thickness=0.5,
       smooth=Smooth.None));
   connect(PID.y, add.u2) annotation (Line(
-      points={{-77.1,90},{-44,90}},
+      points={{-77,90},{-44,90}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(add.y, steamGenerator_1_XRG.QF_setl_) annotation (Line(

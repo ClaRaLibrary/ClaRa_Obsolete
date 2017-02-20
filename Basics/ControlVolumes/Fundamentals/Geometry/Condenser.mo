@@ -1,4 +1,4 @@
-within ClaRa_Obsolete.Basics.ControlVolumes.Fundamentals.Geometry;
+﻿within ClaRa_Obsolete.Basics.ControlVolumes.Fundamentals.Geometry;
 model Condenser "Block shape || Shell with tubes || Hotwell || Vertical flow || Perpendicular tubes"
   //___________________________________________________________________________//
   // Component of the ClaRa library, version: 1.0.0                        //

@@ -1,4 +1,4 @@
-within ClaRa_Obsolete.SubSystems;
+﻿within ClaRa_Obsolete.SubSystems;
 model ConvectiveHeatingPart_4SH "A set of convective heat exchangers including 3 HP superheaters and the spray injectors"
 //___________________________________________________________________________//
 // Component of the ClaRa library, version: 1.0.0                        //
@@ -31,7 +31,7 @@ model ConvectiveHeatingPart_4SH "A set of convective heat exchangers including 3
         p_startSH1_in,
         p_startSH1_out,
         superheater1.N_cv),
-    initType=initTypeSH1,
+    initOption=initOptionSH1,
     useHomotopy=useHomotopy,
     p_nom=linspace(
         p_nomSH1_in,
@@ -113,7 +113,8 @@ model ConvectiveHeatingPart_4SH "A set of convective heat exchangers including 3
                                                      annotation(Dialog(tab= "Superheater 1", group="Initialisation"));
   parameter Modelica.SIunits.Pressure p_startSH1_out=300e5 "Start value of pressure at SH1 outlet"
                                             annotation(Dialog(tab= "Superheater 1", group="Initialisation"));
-  parameter ClaRa.Basics.Choices.Init initTypeSH1=ClaRa.Basics.Choices.Init.noInit "Type of initialisation of SH1" annotation (Dialog(tab="Superheater 1", group="Initialisation"));
+  parameter Integer initOptionSH1=0 "Type of initialisation of SH1"
+    annotation (Dialog(tab="Superheater 1", group="Initialisation"), choices(choice = 0 "Use guess values", choice = 1 "Steady state", choice=201 "Steady pressure", choice = 202 "Steady enthalpy"));
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   replaceable model HeatTransfer_SH2 =
@@ -166,7 +167,8 @@ model ConvectiveHeatingPart_4SH "A set of convective heat exchangers including 3
                                                      annotation(Dialog(tab= "Superheater 2", group="Initialisation"));
   parameter Modelica.SIunits.Pressure p_startSH2_out=300e5 "Start value of pressure at SH2 outlet"
                                             annotation(Dialog(tab= "Superheater 2", group="Initialisation"));
-  parameter ClaRa.Basics.Choices.Init initTypeSH2=ClaRa.Basics.Choices.Init.noInit "Type of initialisation of SH2" annotation (Dialog(tab="Superheater 2", group="Initialisation"));
+  parameter Integer initOptionSH2=0 "Type of initialisation of SH2"
+    annotation (Dialog(tab="Superheater 2", group="Initialisation"), choices(choice = 0 "Use guess values", choice = 1 "Steady state", choice=201 "Steady pressure", choice = 202 "Steady enthalpy"));
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   replaceable model HeatTransfer_SH3 =
@@ -219,7 +221,8 @@ model ConvectiveHeatingPart_4SH "A set of convective heat exchangers including 3
                                                      annotation(Dialog(tab= "Superheater 3", group="Initialisation"));
   parameter Modelica.SIunits.Pressure p_startSH3_out=300e5 "Start value of pressure at SH3 outlet"
                                             annotation(Dialog(tab= "Superheater 3", group="Initialisation"));
-  parameter ClaRa.Basics.Choices.Init initTypeSH3=ClaRa.Basics.Choices.Init.noInit "Type of initialisation of SH3" annotation (Dialog(tab="Superheater 3", group="Initialisation"));
+  parameter Integer initOptionSH3=0 "Type of initialisation of SH3"
+    annotation (Dialog(tab="Superheater 3", group="Initialisation"), choices(choice = 0 "Use guess values", choice = 1 "Steady state", choice=201 "Steady pressure", choice = 202 "Steady enthalpy"));
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -273,8 +276,8 @@ model ConvectiveHeatingPart_4SH "A set of convective heat exchangers including 3
                                                      annotation(Dialog(tab= "Superheater 4", group="Initialisation"));
   parameter Modelica.SIunits.Pressure p_startSH4_out=300e5 "Start value of pressure at SH4 outlet"
                                             annotation(Dialog(tab= "Superheater 4", group="Initialisation"));
-  parameter ClaRa.Basics.Choices.Init initTypeSH4=ClaRa.Basics.Choices.Init.noInit "Type of initialisation of SH4" annotation (Dialog(tab="Superheater 4", group="Initialisation"));
-
+  parameter Integer initOptionSH4=0 "Type of initialisation of SH4"
+    annotation (Dialog(tab="Superheater 4", group="Initialisation"), choices(choice = 0 "Use guess values", choice = 1 "Steady state", choice=201 "Steady pressure", choice = 202 "Steady enthalpy"));
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   parameter Modelica.SIunits.Length diameter_o_SI1=0.5 "Outer diameter of spray injector 1"
@@ -295,7 +298,7 @@ model ConvectiveHeatingPart_4SH "A set of convective heat exchangers including 3
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   parameter Modelica.SIunits.SpecificEnthalpy h_start_Spray1=1000e3 "Initial specific enthalpy of spray 1"
                                            annotation(Dialog(tab="Spray Injector 1", group="Initialisation"));
-  parameter ClaRa.Basics.Choices.Init initType_Spray1=ClaRa.Basics.Choices.Init.noInit "Type of initialisation" annotation (Dialog(tab="Spray Injector 1", group="Initialisation"));
+  parameter Integer initOption_Spray1=0 "Type of initialisation" annotation (Dialog(tab="Spray Injector 1", group="Initialisation"));
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   parameter Modelica.SIunits.Length diameter_o_SI2=0.5 "Outer diameter of spray injector 2"
@@ -316,56 +319,44 @@ model ConvectiveHeatingPart_4SH "A set of convective heat exchangers including 3
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   parameter Modelica.SIunits.SpecificEnthalpy h_start_Spray2=1000e3 "Initial specific enthalpy of spray 2"
                                            annotation(Dialog(tab="Spray Injector 2", group="Initialisation"));
-  parameter ClaRa.Basics.Choices.Init initType_Spray2=ClaRa.Basics.Choices.Init.noInit "Type of initialisation" annotation (Dialog(tab="Spray Injector 2", group="Initialisation"));
+  parameter Integer initOption_Spray2=0 "Type of initialisation" annotation (Dialog(tab="Spray Injector 2", group="Initialisation"));
 
   ClaRa.Basics.ControlVolumes.FluidVolumes.VolumeVLE_2 SH3_InletHeader(
     medium=medium,
-    redeclare model PhaseBorder =
-        ClaRa.Basics.ControlVolumes.Fundamentals.SpacialDistribution.IdeallyStirred,
-    redeclare model PressureLoss =
-        ClaRa.Basics.ControlVolumes.Fundamentals.PressureLoss.Generic_PL.LinearPressureLoss_L2,
+    redeclare model PhaseBorder = ClaRa.Basics.ControlVolumes.Fundamentals.SpacialDistribution.IdeallyStirred,
+    redeclare model PressureLoss = ClaRa.Basics.ControlVolumes.Fundamentals.PressureLoss.Generic_PL.LinearPressureLoss_L2,
     useHomotopy=useHomotopy,
     p_nom=p_nomSH3_in,
     h_nom=h_nomSH3_in,
     h_start=h_startSH3_in,
     p_start=p_startSH3_in,
-    initType=initTypeSH3,
-    redeclare model Geometry =
-        ClaRa.Basics.ControlVolumes.Fundamentals.Geometry.PipeGeometry (
+    redeclare model Geometry = ClaRa.Basics.ControlVolumes.Fundamentals.Geometry.PipeGeometry (
         orientation=ClaRa.Basics.Choices.GeometryOrientation.horizontal,
-        diameter=
-          diameter_i_SH3_in,
-        length=
-          length_SH3_in,
+        diameter=diameter_i_SH3_in,
+        length=length_SH3_in,
         Nt=N_tubes_SH3_in),
-    m_flow_nom=m_flow_nom + m_flow_nomSpray1 + m_flow_nomSpray2)
-    annotation (Placement(transformation(
+    m_flow_nom=m_flow_nom + m_flow_nomSpray1 + m_flow_nomSpray2,
+    initOption=initOptionSH3) annotation (Placement(transformation(
         extent={{-10,-10},{10,10}},
         rotation=90,
         origin={-4,10})));
 
   ClaRa.Basics.ControlVolumes.FluidVolumes.VolumeVLE_2 SH2_OutletHeader(
     medium=medium,
-    redeclare model PhaseBorder =
-        ClaRa.Basics.ControlVolumes.Fundamentals.SpacialDistribution.IdeallyStirred,
-    redeclare model Geometry =
-        ClaRa.Basics.ControlVolumes.Fundamentals.Geometry.PipeGeometry (
+    redeclare model PhaseBorder = ClaRa.Basics.ControlVolumes.Fundamentals.SpacialDistribution.IdeallyStirred,
+    redeclare model Geometry = ClaRa.Basics.ControlVolumes.Fundamentals.Geometry.PipeGeometry (
         orientation=ClaRa.Basics.Choices.GeometryOrientation.horizontal,
-        diameter=
-          diameter_i_SH2_out,
-        length=
-          length_SH2_out,
+        diameter=diameter_i_SH2_out,
+        length=length_SH2_out,
         Nt=N_tubes_SH2_out),
-    redeclare model PressureLoss =
-        ClaRa.Basics.ControlVolumes.Fundamentals.PressureLoss.Generic_PL.LinearPressureLoss_L2,
+    redeclare model PressureLoss = ClaRa.Basics.ControlVolumes.Fundamentals.PressureLoss.Generic_PL.LinearPressureLoss_L2,
     useHomotopy=useHomotopy,
     h_nom=h_nomSH2_out,
     h_start=h_startSH2_out,
     p_start=p_startSH2_out,
-    initType=initTypeSH2,
     p_nom=p_nomSH2_out,
-    m_flow_nom=m_flow_nom + m_flow_nomSpray1)
-    annotation (Placement(transformation(
+    m_flow_nom=m_flow_nom + m_flow_nomSpray1,
+    initOption=initOptionSH2) annotation (Placement(transformation(
         extent={{-10,-10},{10,10}},
         rotation=90,
         origin={-4,-26})));
@@ -400,7 +391,7 @@ model ConvectiveHeatingPart_4SH "A set of convective heat exchangers including 3
         p_startSH2_in,
         p_startSH2_out,
         superheater2.N_cv),
-    initType=initTypeSH2,
+    initOption=initOptionSH2,
     useHomotopy=useHomotopy,
     h_start=linspace(
         h_startSH2_in,
@@ -431,7 +422,7 @@ model ConvectiveHeatingPart_4SH "A set of convective heat exchangers including 3
         p_startSH3_in,
         p_startSH3_out,
         superheater3.N_cv),
-    initType=initTypeSH3,
+    initOption=initOptionSH3,
     useHomotopy=useHomotopy,
     h_start=linspace(
         h_startSH3_in,
@@ -452,26 +443,20 @@ model ConvectiveHeatingPart_4SH "A set of convective heat exchangers including 3
         iconTransformation(extent={{-134,42},{-114,62}})));
   ClaRa.Basics.ControlVolumes.FluidVolumes.VolumeVLE_2 SH1_InletHeader(
     medium=medium,
-    redeclare final model PhaseBorder =
-        ClaRa.Basics.ControlVolumes.Fundamentals.SpacialDistribution.IdeallyStirred,
+    redeclare final model PhaseBorder = ClaRa.Basics.ControlVolumes.Fundamentals.SpacialDistribution.IdeallyStirred,
     m_flow_nom=m_flow_nom,
-    redeclare model PressureLoss =
-        ClaRa.Basics.ControlVolumes.Fundamentals.PressureLoss.Generic_PL.LinearPressureLoss_L2,
+    redeclare model PressureLoss = ClaRa.Basics.ControlVolumes.Fundamentals.PressureLoss.Generic_PL.LinearPressureLoss_L2,
     useHomotopy=useHomotopy,
     p_nom=p_nomSH1_in,
     h_nom=h_nomSH1_in,
     h_start=h_startSH1_in,
     p_start=p_startSH1_in,
-    initType=initTypeSH1,
-    redeclare model Geometry =
-        ClaRa.Basics.ControlVolumes.Fundamentals.Geometry.PipeGeometry (
+    redeclare model Geometry = ClaRa.Basics.ControlVolumes.Fundamentals.Geometry.PipeGeometry (
         orientation=ClaRa.Basics.Choices.GeometryOrientation.horizontal,
-        diameter=
-          diameter_i_SH1_in,
-        length=
-          length_SH1_in,
-        Nt=N_tubes_SH1_in))
-                 annotation (Placement(transformation(
+        diameter=diameter_i_SH1_in,
+        length=length_SH1_in,
+        Nt=N_tubes_SH1_in),
+    initOption=initOptionSH1) annotation (Placement(transformation(
         extent={{-10,-10},{10,10}},
         rotation=90,
         origin={0,-219})));
@@ -487,7 +472,7 @@ model ConvectiveHeatingPart_4SH "A set of convective heat exchangers including 3
     m_flow_nom_spray=m_flow_nomSpray1,
     h_start_Main=h_startSH1_out,
     h_start_Spray=h_start_Spray1,
-    initType=initType_Spray1,
+    initOption=initOption_Spray1,
     N=N_SI1,
     m_flow_nom_main=m_flow_nom,
     Delta_p_nom=Delta_p_nom_SI1,
@@ -513,75 +498,59 @@ model ConvectiveHeatingPart_4SH "A set of convective heat exchangers including 3
         origin={112,-160})));
   ClaRa.Basics.ControlVolumes.FluidVolumes.VolumeVLE_2 SH1_OutletHeader(
     medium=medium,
-    redeclare model Geometry =
-        ClaRa.Basics.ControlVolumes.Fundamentals.Geometry.PipeGeometry (
+    redeclare model Geometry = ClaRa.Basics.ControlVolumes.Fundamentals.Geometry.PipeGeometry (
         orientation=ClaRa.Basics.Choices.GeometryOrientation.horizontal,
-        diameter=
-          diameter_i_SH1_out,
-        length=
-          length_SH1_out,
+        diameter=diameter_i_SH1_out,
+        length=length_SH1_out,
         Nt=N_tubes_SH1_out),
     m_flow_nom=m_flow_nom,
-    redeclare model PressureLoss =
-        ClaRa.Basics.ControlVolumes.Fundamentals.PressureLoss.Generic_PL.LinearPressureLoss_L2,
+    redeclare model PressureLoss = ClaRa.Basics.ControlVolumes.Fundamentals.PressureLoss.Generic_PL.LinearPressureLoss_L2,
     useHomotopy=useHomotopy,
     p_nom=p_nomSH1_out,
     h_nom=h_nomSH1_out,
     h_start=h_startSH1_out,
     p_start=p_startSH1_out,
-    initType=initTypeSH1)  annotation (Placement(transformation(
+    initOption=initOptionSH1) annotation (Placement(transformation(
         extent={{-10,-10},{10,10}},
         rotation=90,
         origin={0,-162})));
 
   ClaRa.Basics.ControlVolumes.FluidVolumes.VolumeVLE_2 SH2_InletHeader(
     medium=medium,
-    redeclare model PhaseBorder =
-        ClaRa.Basics.ControlVolumes.Fundamentals.SpacialDistribution.IdeallyStirred,
-    redeclare model Geometry =
-        ClaRa.Basics.ControlVolumes.Fundamentals.Geometry.PipeGeometry (
+    redeclare model PhaseBorder = ClaRa.Basics.ControlVolumes.Fundamentals.SpacialDistribution.IdeallyStirred,
+    redeclare model Geometry = ClaRa.Basics.ControlVolumes.Fundamentals.Geometry.PipeGeometry (
         orientation=ClaRa.Basics.Choices.GeometryOrientation.horizontal,
-        diameter=
-          diameter_i_SH2_in,
-        length=
-          length_SH2_in,
+        diameter=diameter_i_SH2_in,
+        length=length_SH2_in,
         Nt=N_tubes_SH2_in),
-    redeclare model PressureLoss =
-        ClaRa.Basics.ControlVolumes.Fundamentals.PressureLoss.Generic_PL.LinearPressureLoss_L2,
+    redeclare model PressureLoss = ClaRa.Basics.ControlVolumes.Fundamentals.PressureLoss.Generic_PL.LinearPressureLoss_L2,
     useHomotopy=useHomotopy,
     p_nom=p_nomSH2_in,
     h_nom=h_nomSH2_in,
     h_start=h_startSH2_in,
     p_start=p_startSH2_in,
-    initType=initTypeSH2,
-    m_flow_nom=m_flow_nom + m_flow_nomSpray1)
-    annotation (Placement(transformation(
+    m_flow_nom=m_flow_nom + m_flow_nomSpray1,
+    initOption=initOptionSH2) annotation (Placement(transformation(
         extent={{-10,-10},{10,10}},
         rotation=90,
         origin={-4,-80})));
 
   ClaRa.Basics.ControlVolumes.FluidVolumes.VolumeVLE_2 SH3_OutletHeader(
     medium=medium,
-    redeclare model PhaseBorder =
-        ClaRa.Basics.ControlVolumes.Fundamentals.SpacialDistribution.IdeallyStirred,
-    redeclare model Geometry =
-        ClaRa.Basics.ControlVolumes.Fundamentals.Geometry.PipeGeometry (
+    redeclare model PhaseBorder = ClaRa.Basics.ControlVolumes.Fundamentals.SpacialDistribution.IdeallyStirred,
+    redeclare model Geometry = ClaRa.Basics.ControlVolumes.Fundamentals.Geometry.PipeGeometry (
         orientation=ClaRa.Basics.Choices.GeometryOrientation.horizontal,
-        diameter=
-          diameter_i_SH3_out,
-        length=
-          length_SH3_out,
+        diameter=diameter_i_SH3_out,
+        length=length_SH3_out,
         Nt=N_tubes_SH3_out),
-    redeclare model PressureLoss =
-        ClaRa.Basics.ControlVolumes.Fundamentals.PressureLoss.Generic_PL.LinearPressureLoss_L2,
+    redeclare model PressureLoss = ClaRa.Basics.ControlVolumes.Fundamentals.PressureLoss.Generic_PL.LinearPressureLoss_L2,
     useHomotopy=useHomotopy,
     p_nom=p_nomSH3_out,
     h_nom=h_nomSH3_out,
     h_start=h_startSH3_out,
     p_start=p_startSH3_out,
-    initType=initTypeSH3,
-    m_flow_nom=m_flow_nom + m_flow_nomSpray1 + m_flow_nomSpray2)
-    annotation (Placement(transformation(
+    m_flow_nom=m_flow_nom + m_flow_nomSpray1 + m_flow_nomSpray2,
+    initOption=initOptionSH3) annotation (Placement(transformation(
         extent={{-10,-10},{10,10}},
         rotation=90,
         origin={-4,64})));
@@ -635,7 +604,7 @@ public
     diameter_i=diameter_i_SH1_in,
     length=length_SH1_in,
     N_tubes=N_tubes_SH1_in,
-    initChoice=ClaRa.Basics.Choices.Init.steadyState,
+    initOption=1,
     N_rad=N_rad,
     sizefunc=+1,
     redeclare model Material = Material) annotation (Placement(transformation(
@@ -644,7 +613,7 @@ public
         origin={-30,-210})));
 
   ClaRa.Basics.ControlVolumes.SolidVolumes.ThickWall_L4 SH1_outWall(
-    initChoice=ClaRa.Basics.Choices.Init.steadyState,
+    initOption=1,
     diameter_o=diameter_o_SH1_out,
     diameter_i=diameter_i_SH1_out,
     length=length_SH1_out,
@@ -657,7 +626,7 @@ public
         origin={-30,-156})));
 
   ClaRa.Basics.ControlVolumes.SolidVolumes.ThickWall_L4 SH2_inWall(
-    initChoice=ClaRa.Basics.Choices.Init.steadyState,
+    initOption=1,
     diameter_o=diameter_o_SH2_in,
     diameter_i=diameter_i_SH2_in,
     length=length_SH2_in,
@@ -670,7 +639,7 @@ public
         origin={-34,-74})));
 
   ClaRa.Basics.ControlVolumes.SolidVolumes.ThickWall_L4 SH2_outWall(
-    initChoice=ClaRa.Basics.Choices.Init.steadyState,
+    initOption=1,
     diameter_o=diameter_o_SH2_out,
     diameter_i=diameter_i_SH2_out,
     length=length_SH2_out,
@@ -683,7 +652,7 @@ public
         origin={-36,-22})));
 
   ClaRa.Basics.ControlVolumes.SolidVolumes.ThickWall_L4 SH3_inWall(
-    initChoice=ClaRa.Basics.Choices.Init.steadyState,
+    initOption=1,
     diameter_o=diameter_o_SH3_in,
     diameter_i=diameter_i_SH3_in,
     length=length_SH3_in,
@@ -696,7 +665,7 @@ public
         origin={-32,14})));
 
   ClaRa.Basics.ControlVolumes.SolidVolumes.ThickWall_L4 SH3_outWall(
-    initChoice=ClaRa.Basics.Choices.Init.steadyState,
+    initOption=1,
     diameter_o=diameter_o_SH3_out,
     diameter_i=diameter_i_SH3_out,
     length=length_SH3_out,
@@ -717,7 +686,7 @@ public
     h_nom_Spray=h_nom_Spray2,
     m_flow_nom_spray=m_flow_nomSpray2,
     h_start_Main=h_startSH2_out,
-    initType=initType_Spray2,
+    initOption=initOption_Spray2,
     h_start_Spray=h_start_Spray2,
     useHomotopy=useHomotopy,
     N=N_SI2,
@@ -744,26 +713,20 @@ public
         origin={112,40})));
   ClaRa.Basics.ControlVolumes.FluidVolumes.VolumeVLE_2 SH4_InletHeader(
     medium=medium,
-    redeclare model PhaseBorder =
-        ClaRa.Basics.ControlVolumes.Fundamentals.SpacialDistribution.IdeallyStirred,
-    redeclare model PressureLoss =
-        ClaRa.Basics.ControlVolumes.Fundamentals.PressureLoss.Generic_PL.LinearPressureLoss_L2,
+    redeclare model PhaseBorder = ClaRa.Basics.ControlVolumes.Fundamentals.SpacialDistribution.IdeallyStirred,
+    redeclare model PressureLoss = ClaRa.Basics.ControlVolumes.Fundamentals.PressureLoss.Generic_PL.LinearPressureLoss_L2,
     useHomotopy=useHomotopy,
-    redeclare model Geometry =
-        ClaRa.Basics.ControlVolumes.Fundamentals.Geometry.PipeGeometry (
+    redeclare model Geometry = ClaRa.Basics.ControlVolumes.Fundamentals.Geometry.PipeGeometry (
         orientation=ClaRa.Basics.Choices.GeometryOrientation.horizontal,
-        diameter=
-          diameter_i_SH3_in,
-        length=
-          length_SH3_in,
+        diameter=diameter_i_SH3_in,
+        length=length_SH3_in,
         Nt=N_tubes_SH3_in),
     m_flow_nom=m_flow_nom + m_flow_nomSpray1 + m_flow_nomSpray2,
     p_nom=p_nomSH4_in,
     h_nom=h_nomSH4_in,
     h_start=h_startSH4_in,
     p_start=p_startSH4_in,
-    initType=initTypeSH4)
-    annotation (Placement(transformation(
+    initOption=initOptionSH4) annotation (Placement(transformation(
         extent={{-10,-10},{10,10}},
         rotation=90,
         origin={-2,154})));
@@ -785,7 +748,7 @@ public
         p_startSH4_in,
         p_startSH4_out,
         superheater4.N_cv),
-    initType=initTypeSH4,
+    initOption=initOptionSH4,
     p_nom=linspace(
         p_nomSH4_in,
         p_nomSH4_out,
@@ -801,26 +764,20 @@ public
         origin={-2,178})));
   ClaRa.Basics.ControlVolumes.FluidVolumes.VolumeVLE_2 SH4_OutletHeader(
     medium=medium,
-    redeclare model PhaseBorder =
-        ClaRa.Basics.ControlVolumes.Fundamentals.SpacialDistribution.IdeallyStirred,
-    redeclare model Geometry =
-        ClaRa.Basics.ControlVolumes.Fundamentals.Geometry.PipeGeometry (
+    redeclare model PhaseBorder = ClaRa.Basics.ControlVolumes.Fundamentals.SpacialDistribution.IdeallyStirred,
+    redeclare model Geometry = ClaRa.Basics.ControlVolumes.Fundamentals.Geometry.PipeGeometry (
         orientation=ClaRa.Basics.Choices.GeometryOrientation.horizontal,
-        diameter=
-          diameter_i_SH3_out,
-        length=
-          length_SH3_out,
+        diameter=diameter_i_SH3_out,
+        length=length_SH3_out,
         Nt=N_tubes_SH3_out),
-    redeclare model PressureLoss =
-        ClaRa.Basics.ControlVolumes.Fundamentals.PressureLoss.Generic_PL.LinearPressureLoss_L2,
+    redeclare model PressureLoss = ClaRa.Basics.ControlVolumes.Fundamentals.PressureLoss.Generic_PL.LinearPressureLoss_L2,
     useHomotopy=useHomotopy,
     m_flow_nom=m_flow_nom + m_flow_nomSpray1 + m_flow_nomSpray2,
     p_nom=p_nomSH4_out,
     h_nom=h_nomSH4_out,
     h_start=h_startSH4_out,
     p_start=p_startSH4_out,
-    initType=initTypeSH4)
-    annotation (Placement(transformation(
+    initOption=initOptionSH4) annotation (Placement(transformation(
         extent={{-10,-10},{10,10}},
         rotation=90,
         origin={-2,208})));
@@ -837,7 +794,7 @@ public
         origin={-54,178})));
 
   ClaRa.Basics.ControlVolumes.SolidVolumes.ThickWall_L4 SH4_inWall(
-    initChoice=ClaRa.Basics.Choices.Init.steadyState,
+    initOption=1,
     N_rad=N_rad,
     sizefunc=+1,
     diameter_o=diameter_o_SH4_in,
@@ -850,7 +807,7 @@ public
         origin={-30,158})));
 
   ClaRa.Basics.ControlVolumes.SolidVolumes.ThickWall_L4 SH4_outWall(
-    initChoice=ClaRa.Basics.Choices.Init.steadyState,
+    initOption=1,
     N_rad=N_rad,
     sizefunc=+1,
     diameter_o=diameter_o_SH4_out,

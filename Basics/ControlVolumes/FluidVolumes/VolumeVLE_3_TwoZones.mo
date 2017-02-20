@@ -1,4 +1,4 @@
-within ClaRa_Obsolete.Basics.ControlVolumes.FluidVolumes;
+﻿within ClaRa_Obsolete.Basics.ControlVolumes.FluidVolumes;
 model VolumeVLE_3_TwoZones "A volume element balancing liquid and vapour phase"
   //___________________________________________________________________________//
   // Component of the ClaRa library, version: 1.0.0                        //
@@ -16,6 +16,7 @@ model VolumeVLE_3_TwoZones "A volume element balancing liquid and vapour phase"
   //___________________________________________________________________________//
   extends ClaRa.Basics.Icons.Volume2Zones;
   extends ClaRa.Basics.Icons.ComplexityLevel(complexity="L3");
+  extends ClaRa_Obsolete.Basics.Icons.Obsolete_v1_1;
   //  extends BaseClasses.Interfaces.DataInterface(p_int=outlet.p/1e5,h_int=outlet.h_outflow/1e3, m_flow_int=-outlet.m_flow, T_int=fluidOut.T-273.15, s_int=fluidOut.s/1e3);
   outer ClaRa.SimCenter simCenter;
 

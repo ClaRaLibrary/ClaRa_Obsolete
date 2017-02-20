@@ -1,4 +1,4 @@
-within ClaRa_Obsolete.UsersGuide;
+﻿within ClaRa_Obsolete.UsersGuide;
 package GettingStarted "An introduction to the library"
 //___________________________________________________________________________//
 // Package of the ClaRa library, version: 1.0.0                          //

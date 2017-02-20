@@ -1,4 +1,4 @@
-within ClaRa_Obsolete.Components.Utilities;
+﻿within ClaRa_Obsolete.Components.Utilities;
 block LimPID_110 "The LimPID as it was up to ClaRa version 1.1.0"
   //___________________________________________________________________________//
 // Component of the ClaRa library, version: 1.1.0                            //
