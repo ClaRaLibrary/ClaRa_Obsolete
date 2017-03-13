@@ -128,11 +128,11 @@ package Desulfurization
       TILMedia.GasObjectFunctions.GasPointer GasPointer=
         TILMedia.GasObjectFunctions.GasPointer(
         medium.concatGasName,
-        8,
+        0,
         medium.xi_default,
         medium.nc_propertyCalculation,
         medium.nc,
-        0,
+        8,
         0) "Pointer to external medium memory";
 
     Fundamentals.Desulfurisation_controlVolume_ideal deSO_controlVolume(
