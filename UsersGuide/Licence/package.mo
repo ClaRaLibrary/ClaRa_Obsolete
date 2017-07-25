@@ -7,7 +7,7 @@ package Licence
 // future                                                                    //
 //___________________________________________________________________________//
 // Licensed by the DYNCAP research team under Modelica License 2.            //
-// Copyright © 2013-2015, DYNCAP research team.                                   //
+// Copyright Â© 2013-2015, DYNCAP research team.                                   //
 //___________________________________________________________________________//
 // This Modelica package is free software and the use is completely at your  //
 // own risk; it can be redistributed and/or modified under the terms of the  //
@@ -34,7 +34,7 @@ extends ClaRa.Basics.Icons.PackageIcons.Info100;
 // ClaRa library, version: 1.0.0                                         //
 //                                                                           //
 // Licensed by the DYNCAP research team under Modelica License 2.            //
-// Copyright © 2013-2015, DYNCAP research team.                                   //
+// Copyright Â© 2013-2015, DYNCAP research team.                                   //
 //                                                                           //
 // This Modelica package is free software and the use is completely at your  //
 // own risk; it can be redistributed and/or modified under the terms of the  //

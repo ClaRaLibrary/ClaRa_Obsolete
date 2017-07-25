@@ -7,7 +7,7 @@ package TableInterpolation
 // future                                                                    //
 //___________________________________________________________________________//
 // Licensed by the DYNCAP/DYNSTART research team under Modelica License 2.   //
-// Copyright © 2013-2016, DYNCAP/DYNSTART research team.                     //
+// Copyright Â© 2013-2016, DYNCAP/DYNSTART research team.                     //
 //___________________________________________________________________________//
 // This Modelica package is free software and the use is completely at your  //
 // own risk; it can be redistributed and/or modified under the terms of the  //

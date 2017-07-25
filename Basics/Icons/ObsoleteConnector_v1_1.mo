@@ -4,7 +4,7 @@ connector ObsoleteConnector_v1_1 "This model will be not longer supported with V
 // Component of the ClaRa library, version: 1.0.0                        //
 //                                                                           //
 // Licensed by the DYNCAP research team under Modelica License 2.            //
-// Copyright © 2013-2015, DYNCAP research team.                                   //
+// Copyright Â© 2013-2015, DYNCAP research team.                                   //
 //___________________________________________________________________________//
 // DYNCAP is a research project supported by the German Federal Ministry of  //
 // Economics and Technology (FKZ 03ET2009).                                  //
