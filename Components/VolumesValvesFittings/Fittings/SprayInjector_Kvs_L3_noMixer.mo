@@ -97,7 +97,7 @@ public
   ClaRa.Basics.Interfaces.FluidPortOut outlet1(Medium=medium) "Outlet port"
     annotation (Placement(transformation(extent={{90,10},{110,30}}),
         iconTransformation(extent={{90,10},{110,30}})));
-  ClaRa.Basics.ControlVolumes.SolidVolumes.ThickWall_L4 wall(
+  ClaRa.Basics.ControlVolumes.SolidVolumes.CylindricalThickWall_L4 wall(
     redeclare replaceable model Material = Material,
     sizefunc=+1,
     diameter_o=d_a,

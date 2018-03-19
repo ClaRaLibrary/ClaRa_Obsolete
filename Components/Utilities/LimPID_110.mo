@@ -137,12 +137,9 @@ public
   ClaRa.Components.Utilities.Blocks.DerivativeClaRa D_approx(
     k=Tau_d,
     x_start=xd_start,
-    initType=if initType == InitPID.SteadyState or initType == InitPID.InitialOutput
-         then Modelica.Blocks.Types.Init.SteadyState else if initType ==
-        InitPID.InitialState then Modelica.Blocks.Types.Init.InitialState else
-        Modelica.Blocks.Types.Init.NoInit,
-    Tau=Nd) if                                             with_D annotation (
-      Placement(transformation(extent={{-30,50},{-10,69.5}}, rotation=0)));
+    Tau=Nd,
+    initOption=if ((if initType == InitPID.SteadyState or initType == InitPID.InitialOutput then Modelica.Blocks.Types.Init.SteadyState else if initType == InitPID.InitialState then Modelica.Blocks.Types.Init.InitialState else Modelica.Blocks.Types.Init.NoInit) == Modelica.Blocks.Types.Init.SteadyState) then 502 elseif ((if initType == InitPID.SteadyState or initType == InitPID.InitialOutput then Modelica.Blocks.Types.Init.SteadyState else if initType == InitPID.InitialState then Modelica.Blocks.Types.Init.InitialState else Modelica.Blocks.Types.Init.NoInit) == Modelica.Blocks.Types.Init.InitialState) then 799 elseif ((if initType == InitPID.SteadyState or initType == InitPID.InitialOutput then Modelica.Blocks.Types.Init.SteadyState else if initType == InitPID.InitialState then Modelica.Blocks.Types.Init.InitialState else Modelica.Blocks.Types.Init.NoInit) == Modelica.Blocks.Types.Init.InitialOutput) then 504 elseif ((if initType == InitPID.SteadyState or initType == InitPID.InitialOutput
+         then Modelica.Blocks.Types.Init.SteadyState else if initType == InitPID.InitialState then Modelica.Blocks.Types.Init.InitialState else Modelica.Blocks.Types.Init.NoInit) == Modelica.Blocks.Types.Init.NoInit) then 501 else 0) if with_D annotation (Placement(transformation(extent={{-30,50},{-10,69.5}}, rotation=0)));
   Modelica.Blocks.Math.Add3 addPID(
     k1=1,
     k2=1,

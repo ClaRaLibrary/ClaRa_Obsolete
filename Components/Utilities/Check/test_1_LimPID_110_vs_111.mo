@@ -20,12 +20,11 @@ model test_1_LimPID_110_vs_111
     y_start=4,
     xi_start=3,
     xd_start=2,
-    initType=Modelica.Blocks.Types.InitPID.InitialOutput,
     y_max=100,
     Tau_i=0.1,
     Tau_d=1,
-    controllerType=Modelica.Blocks.Types.SimpleController.PID)
-             annotation (Placement(transformation(extent={{-40,60},{-20,80}})));
+    controllerType=Modelica.Blocks.Types.SimpleController.PID,
+    initOption=796) annotation (Placement(transformation(extent={{-40,60},{-20,80}})));
   Modelica.Blocks.Sources.RealExpression realExpression(y=1)
     annotation (Placement(transformation(extent={{-82,60},{-62,80}})));
   Modelica.Blocks.Sources.Sine sine(

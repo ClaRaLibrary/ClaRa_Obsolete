@@ -32,7 +32,7 @@ model testCoalSupplyBoiler7_XRG_vr
     Tau_i=500,
     k=2.5,
     y_start=0,
-    initType=Modelica.Blocks.Types.InitPID.NoInit) annotation (Placement(transformation(extent={{-98,80},{-78,100}})));
+    initOption=501) annotation (Placement(transformation(extent={{-98,80},{-78,100}})));
   Modelica.Blocks.Sources.RealExpression SV_Pressure_LS(y=
         turbinesAndReheat_01_XRG.P_gen_) "Set value of live steam pressure"
     annotation (Placement(transformation(extent={{-132,80},{-112,100}})));
@@ -86,7 +86,7 @@ public
     rho_nom=1.7,
     m_flow_nom=419 - 150,
     p_nom=400000,
-    redeclare model Efficiency = ClaRa.Components.TurboMachines.Fundamentals.EfficiencyModels.TableMassFlow (eta_mflow=([0.0,0.9; 1,0.9]))) annotation (Placement(transformation(extent={{138,-76},{154,-56}})));
+    redeclare model Efficiency = ClaRa.Components.TurboMachines.Fundamentals.TurbineEfficiency.TableMassFlow (eta_mflow=([0.0,0.9; 1,0.9]))) annotation (Placement(transformation(extent={{138,-76},{154,-56}})));
   ClaRa.Components.VolumesValvesFittings.Fittings.SplitVLE_L2_Y split_IET3_1(initOption=208, redeclare model PressureLossIn = ClaRa.Components.VolumesValvesFittings.Fittings.Fundamentals.Linear) annotation (Placement(transformation(extent={{114,-102},{134,-90}})));
   ClaRa.Components.BoundaryConditions.BoundaryVLE_hxim_flow massFlowSource_XRG1(variable_m_flow=false, m_flow_const=-150) annotation (Placement(transformation(extent={{124,-138},{144,-118}})));
   Modelica.Blocks.Sources.Ramp ramp3(

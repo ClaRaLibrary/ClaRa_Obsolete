@@ -536,7 +536,7 @@ model ConvectiveHeatingPart_3SH "A set of convective heat exchangers including 3
         rotation=90,
         origin={0,190})));
 
-  ClaRa.Basics.ControlVolumes.SolidVolumes.ThinWall_L4 SH3_wall(
+  ClaRa.Basics.ControlVolumes.SolidVolumes.CylindricalThinWall_L4 SH3_wall(
     N_ax=N_ax,
     diameter_o=diameter_o_SH3,
     diameter_i=diameter_i_SH3,
@@ -546,7 +546,7 @@ model ConvectiveHeatingPart_3SH "A set of convective heat exchangers including 3
         extent={{-10,-10},{10,10}},
         rotation=90,
         origin={-52,160})));
-  ClaRa.Basics.ControlVolumes.SolidVolumes.ThinWall_L4 SH2_wall(
+  ClaRa.Basics.ControlVolumes.SolidVolumes.CylindricalThinWall_L4 SH2_wall(
     N_ax=N_ax,
     diameter_o=diameter_o_SH2,
     diameter_i=diameter_i_SH2,
@@ -557,7 +557,7 @@ model ConvectiveHeatingPart_3SH "A set of convective heat exchangers including 3
         rotation=90,
         origin={-52,-20})));
 
-  ClaRa.Basics.ControlVolumes.SolidVolumes.ThinWall_L4 SH1_wall(
+  ClaRa.Basics.ControlVolumes.SolidVolumes.CylindricalThinWall_L4 SH1_wall(
     N_ax=N_ax,
     diameter_o=diameter_o_SH1,
     diameter_i=diameter_i_SH1,
@@ -579,7 +579,7 @@ public
   Modelica.Blocks.Sources.RealExpression realExpression[4](y={sprayInjector1.eye.T,
         superheater2.eye.T,sprayInjector2.eye.T,superheater3.eye.T})
     annotation (Placement(transformation(extent={{30,-50},{50,-30}})));
-  ClaRa.Basics.ControlVolumes.SolidVolumes.ThickWall_L4 SH1_inWall(
+  ClaRa.Basics.ControlVolumes.SolidVolumes.CylindricalThickWall_L4 SH1_inWall(
     diameter_o=diameter_o_SH1_in,
     diameter_i=diameter_i_SH1_in,
     length=length_SH1_in,
@@ -592,7 +592,7 @@ public
         rotation=90,
         origin={-30,-210})));
 
-  ClaRa.Basics.ControlVolumes.SolidVolumes.ThickWall_L4 SH1_outWall(
+  ClaRa.Basics.ControlVolumes.SolidVolumes.CylindricalThickWall_L4 SH1_outWall(
     initOption=1,
     diameter_o=diameter_o_SH1_out,
     diameter_i=diameter_i_SH1_out,
@@ -605,7 +605,7 @@ public
         rotation=90,
         origin={-30,-156})));
 
-  ClaRa.Basics.ControlVolumes.SolidVolumes.ThickWall_L4 SH2_inWall(
+  ClaRa.Basics.ControlVolumes.SolidVolumes.CylindricalThickWall_L4 SH2_inWall(
     initOption=1,
     diameter_o=diameter_o_SH2_in,
     diameter_i=diameter_i_SH2_in,
@@ -618,7 +618,7 @@ public
         rotation=90,
         origin={-30,-38})));
 
-  ClaRa.Basics.ControlVolumes.SolidVolumes.ThickWall_L4 SH2_outWall(
+  ClaRa.Basics.ControlVolumes.SolidVolumes.CylindricalThickWall_L4 SH2_outWall(
     initOption=1,
     diameter_o=diameter_o_SH2_out,
     diameter_i=diameter_i_SH2_out,
@@ -631,7 +631,7 @@ public
         rotation=90,
         origin={-32,14})));
 
-  ClaRa.Basics.ControlVolumes.SolidVolumes.ThickWall_L4 SH3_inWall(
+  ClaRa.Basics.ControlVolumes.SolidVolumes.CylindricalThickWall_L4 SH3_inWall(
     initOption=1,
     diameter_o=diameter_o_SH3_in,
     diameter_i=diameter_i_SH3_in,
@@ -644,7 +644,7 @@ public
         rotation=90,
         origin={-28,140})));
 
-  ClaRa.Basics.ControlVolumes.SolidVolumes.ThickWall_L4 SH3_outWall(
+  ClaRa.Basics.ControlVolumes.SolidVolumes.CylindricalThickWall_L4 SH3_outWall(
     initOption=1,
     diameter_o=diameter_o_SH3_out,
     diameter_i=diameter_i_SH3_out,

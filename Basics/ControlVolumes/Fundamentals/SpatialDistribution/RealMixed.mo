@@ -17,6 +17,7 @@ model RealMixed "Mixing | Real | outlet states depending volume fractions | All 
   import ClaRa.Basics.Functions.Stepsmoother;
   extends ClaRa.Basics.ControlVolumes.Fundamentals.SpacialDistribution.RealPhases;
   extends ClaRa.Basics.Icons.RealMixing;
+  extends ClaRa_Obsolete.Basics.Icons.Obsolete_v1_1;
   parameter ClaRa.Basics.Units.VolumeFraction eps_mix[2]={0.2,0.8} "Volume fraction V_1/V_tot of min/max mixed outlet";
 
 protected

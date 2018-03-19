@@ -2,6 +2,7 @@ within ClaRa_Obsolete.Basics.ControlVolumes.Fundamentals.SpatialDistribution;
 partial model RealPhases "The phases are NOT in ideal thermodynamic equilibrium"
 
   extends ClaRa.Basics.Icons.RealPhases;
+  extends ClaRa_Obsolete.Basics.Icons.Obsolete_v1_1;
   parameter Real level_rel_start=0.5 "Start value for relative filling Level";
 
   outer parameter Boolean useHomotopy;

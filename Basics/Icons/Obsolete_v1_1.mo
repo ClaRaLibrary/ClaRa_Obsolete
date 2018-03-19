@@ -1,5 +1,5 @@
 ﻿within ClaRa_Obsolete.Basics.Icons;
-model Obsolete_v1_1 "This model will be not longer supported with Version 1.3!"
+model Obsolete_v1_1 "This model will be not longer supported than Version 1.3!"
 //___________________________________________________________________________//
 // Component of the ClaRa library, version: 1.0.0                        //
 //                                                                           //

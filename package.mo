@@ -3,12 +3,12 @@ package ClaRa_Obsolete "ClaRa obsolete models package"
   import SI = ClaRa_Obsolete.Basics.Units;
 
 
-annotation (preferedView="info",version="1.2.2",
+annotation (preferedView="info",version="1.3.0",
                            uses(
-    TILMedia(version="1.2.2 ClaRa"),
+    TILMedia(version="1.3.0 ClaRa"),
     FluidDissipation(version="1.1.8"),
-    ClaRa(version="1.2.2"),
-    Modelica(version="3.2.2")),  Icon(coordinateSystem(preserveAspectRatio=
+    Modelica(version="3.2.2"),
+    ClaRa(version="1.3.0")),     Icon(coordinateSystem(preserveAspectRatio=
           false, extent={{-100,-100},{100,100}}),
                                       graphics={Bitmap(
         extent={{-100,-100},{100,100}},
@@ -22,7 +22,8 @@ annotation (preferedView="info",version="1.2.2",
     from(
       version="1.0.1",
       to="Intermediate",
-      change(item=convertClass("ClaRa.SubSystems.Boiler.SteamGenerator_L3_vr", "ClaRa_Obsolete.SubSystems.SteamGenerator_L3_vr")))),
+      change(item=convertClass("ClaRa.SubSystems.Boiler.SteamGenerator_L3_vr", "ClaRa_Obsolete.SubSystems.SteamGenerator_L3_vr"))),
+    noneFromVersion="1.2.2"),
   Documentation(info="<html>
 <p><img src=\"modelica://ClaRa/figures/ClaRaLibraryInfo.png\"/></p>
 </html>"));

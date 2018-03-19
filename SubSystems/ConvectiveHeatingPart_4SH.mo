@@ -555,7 +555,7 @@ model ConvectiveHeatingPart_4SH "A set of convective heat exchangers including 3
         rotation=90,
         origin={-4,64})));
 
-  ClaRa.Basics.ControlVolumes.SolidVolumes.ThinWall_L4 SH3_wall(
+  ClaRa.Basics.ControlVolumes.SolidVolumes.CylindricalThinWall_L4 SH3_wall(
     N_ax=N_ax,
     diameter_o=diameter_o_SH3,
     diameter_i=diameter_i_SH3,
@@ -566,7 +566,7 @@ model ConvectiveHeatingPart_4SH "A set of convective heat exchangers including 3
         rotation=90,
         origin={-56,34})));
 
-  ClaRa.Basics.ControlVolumes.SolidVolumes.ThinWall_L4 SH2_wall(
+  ClaRa.Basics.ControlVolumes.SolidVolumes.CylindricalThinWall_L4 SH2_wall(
     N_ax=N_ax,
     diameter_o=diameter_o_SH2,
     diameter_i=diameter_i_SH2,
@@ -577,7 +577,7 @@ model ConvectiveHeatingPart_4SH "A set of convective heat exchangers including 3
         rotation=90,
         origin={-56,-56})));
 
-  ClaRa.Basics.ControlVolumes.SolidVolumes.ThinWall_L4 SH1_wall(
+  ClaRa.Basics.ControlVolumes.SolidVolumes.CylindricalThinWall_L4 SH1_wall(
     N_ax=N_ax,
     diameter_o=diameter_o_SH1,
     diameter_i=diameter_i_SH1,
@@ -599,7 +599,7 @@ public
   Modelica.Blocks.Sources.RealExpression realExpression[4](y={sprayInjector1.eye.T,
         superheater3.eye.T,sprayInjector2.eye.T,superheater4.eye.T})
     annotation (Placement(transformation(extent={{26,-88},{46,-68}})));
-  ClaRa.Basics.ControlVolumes.SolidVolumes.ThickWall_L4 SH1_inWall(
+  ClaRa.Basics.ControlVolumes.SolidVolumes.CylindricalThickWall_L4 SH1_inWall(
     diameter_o=diameter_o_SH1_in,
     diameter_i=diameter_i_SH1_in,
     length=length_SH1_in,
@@ -612,7 +612,7 @@ public
         rotation=90,
         origin={-30,-210})));
 
-  ClaRa.Basics.ControlVolumes.SolidVolumes.ThickWall_L4 SH1_outWall(
+  ClaRa.Basics.ControlVolumes.SolidVolumes.CylindricalThickWall_L4 SH1_outWall(
     initOption=1,
     diameter_o=diameter_o_SH1_out,
     diameter_i=diameter_i_SH1_out,
@@ -625,7 +625,7 @@ public
         rotation=90,
         origin={-30,-156})));
 
-  ClaRa.Basics.ControlVolumes.SolidVolumes.ThickWall_L4 SH2_inWall(
+  ClaRa.Basics.ControlVolumes.SolidVolumes.CylindricalThickWall_L4 SH2_inWall(
     initOption=1,
     diameter_o=diameter_o_SH2_in,
     diameter_i=diameter_i_SH2_in,
@@ -638,7 +638,7 @@ public
         rotation=90,
         origin={-34,-74})));
 
-  ClaRa.Basics.ControlVolumes.SolidVolumes.ThickWall_L4 SH2_outWall(
+  ClaRa.Basics.ControlVolumes.SolidVolumes.CylindricalThickWall_L4 SH2_outWall(
     initOption=1,
     diameter_o=diameter_o_SH2_out,
     diameter_i=diameter_i_SH2_out,
@@ -651,7 +651,7 @@ public
         rotation=90,
         origin={-36,-22})));
 
-  ClaRa.Basics.ControlVolumes.SolidVolumes.ThickWall_L4 SH3_inWall(
+  ClaRa.Basics.ControlVolumes.SolidVolumes.CylindricalThickWall_L4 SH3_inWall(
     initOption=1,
     diameter_o=diameter_o_SH3_in,
     diameter_i=diameter_i_SH3_in,
@@ -664,7 +664,7 @@ public
         rotation=90,
         origin={-32,14})));
 
-  ClaRa.Basics.ControlVolumes.SolidVolumes.ThickWall_L4 SH3_outWall(
+  ClaRa.Basics.ControlVolumes.SolidVolumes.CylindricalThickWall_L4 SH3_outWall(
     initOption=1,
     diameter_o=diameter_o_SH3_out,
     diameter_i=diameter_i_SH3_out,
@@ -782,7 +782,7 @@ public
         rotation=90,
         origin={-2,208})));
 
-  ClaRa.Basics.ControlVolumes.SolidVolumes.ThinWall_L4 SH4_wall(
+  ClaRa.Basics.ControlVolumes.SolidVolumes.CylindricalThinWall_L4 SH4_wall(
     N_ax=N_ax,
     diameter_o=diameter_o_SH4,
     diameter_i=diameter_i_SH4,
@@ -793,7 +793,7 @@ public
         rotation=90,
         origin={-54,178})));
 
-  ClaRa.Basics.ControlVolumes.SolidVolumes.ThickWall_L4 SH4_inWall(
+  ClaRa.Basics.ControlVolumes.SolidVolumes.CylindricalThickWall_L4 SH4_inWall(
     initOption=1,
     N_rad=N_rad,
     sizefunc=+1,
@@ -806,7 +806,7 @@ public
         rotation=90,
         origin={-30,158})));
 
-  ClaRa.Basics.ControlVolumes.SolidVolumes.ThickWall_L4 SH4_outWall(
+  ClaRa.Basics.ControlVolumes.SolidVolumes.CylindricalThickWall_L4 SH4_outWall(
     initOption=1,
     N_rad=N_rad,
     sizefunc=+1,

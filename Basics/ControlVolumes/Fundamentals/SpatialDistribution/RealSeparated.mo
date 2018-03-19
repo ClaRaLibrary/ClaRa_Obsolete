@@ -17,6 +17,7 @@ model RealSeparated "Separation | Real | outlet states depending on filling Leve
 
   extends ClaRa.Basics.ControlVolumes.Fundamentals.SpacialDistribution.RealPhases;
   extends ClaRa.Basics.Icons.RealSeparation;
+  extends ClaRa_Obsolete.Basics.Icons.Obsolete_v1_1;
   import ClaRa.Basics.Functions.Stepsmoother;
 
   /////// The following block is be conform to MSL 3.2 and will be removed in the future////////////////
